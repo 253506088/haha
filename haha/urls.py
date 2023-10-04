@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from face_recognition import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('helloWorld/', views.helloWorld),
+    path('upload/image/', views.upload_image),
+    path('upload/zip/', views.upload_zip),
 ]

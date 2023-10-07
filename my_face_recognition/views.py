@@ -9,7 +9,7 @@ import time
 import os
 import shutil
 import zipfile
-from face_recognition import insightfaceTool
+from my_face_recognition import insightfaceTool
 
 face_tool: insightfaceTool.InsightfaceTool = insightfaceTool.InsightfaceTool()
 

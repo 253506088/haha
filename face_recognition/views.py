@@ -7,6 +7,7 @@ import numpy as np
 import cv2
 import time
 import os
+import shutil
 import zipfile
 from face_recognition import insightfaceTool
 
@@ -49,6 +50,9 @@ def upload_zip(request: HttpRequest):
                 # 防止中文乱码
                 file_info.filename = file_info.filename.encode('cp437').decode('gbk')
                 zip_ref.extract(file_info, path)
+        # 将目录下的人脸图片全部解析到索引里
         face_tool.batching(path)
+        # 解析完毕后删除临时目录
+        shutil.rmtree(path)
         return JsonResponse({'message': '成功 '})
     return JsonResponse({'message': '请使用post请求上传zip压缩包，图片命名格式：【${名称}_%{id}.jpg】，图片格式不局限于jpg'})
